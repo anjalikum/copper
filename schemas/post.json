@@ -1,6 +1,12 @@
 {
   "type": "object",
   "properties": {
+    "badge": {
+      "type": "number"
+    },
+    "department": {
+      "type": "string"
+    },
     "ratings": {
       "type": "object",
       "properties": {
