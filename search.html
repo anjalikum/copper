@@ -7,6 +7,7 @@
   <title>Copper</title>
 
   <link rel="stylesheet" href="css/search.css">
+  <script src="jquery-3.5.1.min.js"></script>
 
 </head>
 
@@ -29,18 +30,28 @@
     </div> 
 
     <div class="content">
-        <form>
-            <label for="badge">Badge Number</label><br>
-            <input type="text" id="badge" name="badge"><br>
-            <label for="prec">Precinct</label><br>
-            <input type="text" id="prec" name="prec">
-            <input type="submit" value="Submit">
-        </form> 
+        <div id="form">
+            <form>
+                <label for="badge">Badge Number</label><br>
+                <input type="text" id="badge" name="badge"><br>
+                <label for="prec">Precinct</label><br>
+                <input type="text" id="prec" name="prec"><br>
+                <input type="submit" value="Submit">
+            </form> 
+        </div>
+
+        <div id="profile">
+            <div class="cop-info">
+                Officer Badge Number: dummy-number <!-- Change this! -->
+                City: dummy-city <!-- And this! -->
+                <!-- Add feed here-->
+            </div>
+            <div class="not found">
+                Sorry, we do not have any cop with badge number dummy-number <!-- Change this! --> and precinct dummy-precinct <!-- And this! -->.
+            </div>
+        </div>
     </div>
 
-    <div class="profile">
-        
-    </div>
 </body>
 
 
