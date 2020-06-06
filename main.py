@@ -37,5 +37,18 @@ def rate():
     return jsonify({"status": "success"})
 
 
+@app.route("/api/departments/<string:state>")
+def departments_for_state(state):
+    state = state.upper()
+    if len(state) != 2:
+        return jsonify({"status": "error", "reason": "state code must be two characters long"}), 400
+
+    query = datastore_client.query(kind="Department")
+    query.add_filter("state_code", "=", state)
+
+    entities = [entity for entity in query.fetch()]
+    return jsonify({"status": "success", "data": entities})
+
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080)
