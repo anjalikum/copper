@@ -29,6 +29,95 @@
     </div> 
 
     <div class="content">
+        <h1>Rate Your Cop Here</h1>
+
+    </div>
+
+        <style>
+        
+        body {font-family:'Open Sans', sans-serif;}
+        * {box-sizing: content-box;}
+        
+        input[type=text], select, textarea {
+          width: 100%;
+          padding: 12px;
+          border: 1px solid rgba(255,255,255,0.5);
+          border-radius: 4px;
+          box-sizing: border-box;
+          margin-top: 6px;
+          margin-bottom: 16px;
+          resize: vertical;
+        }
+        
+        input[type=submit] {
+          background-color: #AD8A56;
+          color: rgba(255,255,255,0.5);
+          padding: 12px 20px;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        
+        input[type=submit]:hover {
+          background-color: #614A27;
+        }
+        
+        .container {
+          border-radius: 5px;
+          background-color: rgba(255,255,255,0.5);
+          padding: 20px;
+        }
+        </style>
+     
+        </head>
+        
+        <body>
+        
+        
+            
+        
+        <div class="container">
+          <form action="/action_page.php">
+            <label for="bnumber">Badge Number</label>
+            <input type="text" id="bnumber" name="bnumber" placeholder="Badge Number..">
+        
+            <label for="City">City</label>
+            <input type="text" id="city" name="city" placeholder="Location Of Incident..">
+
+            <label for="zcode">Zip Code</label>
+            <input type="text" id="zcode" name="zcode" placeholder="Zip Code..">
+        
+            <label for="rating">Rating</label>
+            <select id="rating" name="rating">
+              <option value="0">0</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+        
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="Description Of Incident.." style="height:200px"></textarea>
+        
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                Select image to upload:
+                <input type="file" name="fileToUpload" id="fileToUpload">
+                <input type="submit" value="Upload Image" name="submit">
+              </form>
+              
+            <input type="submit" value="Submit">
+          </form>
+        </div>
+        
+          
+    </div>
+</body>
+
+
+</html>
+
+    <div class="content">
         This is the rate page.
     </div>
 </body>
