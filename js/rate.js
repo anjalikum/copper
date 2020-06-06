@@ -1,15 +1,29 @@
-$(document).ready(function(){
-    // Check Radio-box
-    $(".rating input:radio").attr("checked", false);
+$( document ).ready(function() {
+    var star1, star2, star3, star4, star5;
 
-    $('.rating input').click(function () {
-        $(".rating span").removeClass('checked');
-        $(this).parent().addClass('checked');
+    $('#stars_1').starrr({
+        change: function(e, value){
+          star1 = value;
+        }
     });
-
-    $('input:radio').change(
-      function(){
-        var userRating = this.value;
-        alert(userRating);
-    }); 
+    $('#stars_2').starrr({
+        change: function(e, value){
+          star2 = value;
+        }
+    });
+    $('#stars_3').starrr({
+        change: function(e, value){
+          star3 = value;
+        }
+    });
+    $('#stars_4').starrr({
+        change: function(e, value){
+          star4 = value;
+        }
+    });
+    $('#stars_5').starrr({
+        change: function(e, value){
+          star5 = value;
+        }
+    });
 });

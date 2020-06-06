@@ -27,7 +27,7 @@
     font-size: 17px;
     display: block;
     align-self: end;
-    height: 80px;
+    height: 100px;
   }
 
   .topnav ul li:first-child {
@@ -93,34 +93,14 @@ input[type=submit]:hover {
   background-color: #614A27;
 }
 
-.rating {
-  float:left;
-  width:300px;
+.starrr {
+  display: inline-block;
 }
-.rating span { float:right; position:relative; }
-.rating span input {
-  position:absolute;
-  top:0px;
-  left:0px;
-  opacity:0;
-}
-.rating span label {
-  display:inline-block;
-  width:30px;
-  height:30px;
-  text-align:center;
-  color:#FFF;
-  background:#ccc;
-  font-size:30px;
-  margin-right:2px;
-  line-height:30px;
-  border-radius:50%;
-  -webkit-border-radius:50%;
-}
-.rating span:hover ~ span label,
-.rating span:hover label,
-.rating span.checked label,
-.rating span.checked ~ span label {
-  background:#F90;
-  color:#FFF;
+
+.starrr a {
+  font-size: 16px;
+  padding: 0 1px;
+  cursor: pointer;
+  color: #dab072;
+  text-decoration: none;
 }
