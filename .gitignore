@@ -1,0 +1,4 @@
+.idea
+venv
+rate-your-cop-*.json
+**/__pycache__

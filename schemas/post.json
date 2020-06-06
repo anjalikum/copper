@@ -1,0 +1,62 @@
+{
+  "type": "object",
+  "properties": {
+    "ratings": {
+      "type": "object",
+      "properties": {
+        "friendliness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "difficulty": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "appropriateness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "helpfulness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        },
+        "nonviolence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 5
+        }
+      }
+    },
+    "tags": {
+      "type": "object",
+      "properties": {
+        "race": {
+          "type": "string",
+          "enum": ["white", "african american", "american indian", "asian", "pacific islander", "other"]
+        },
+        "gender": {
+          "type": "string",
+          "enum": ["male", "female", "non-binary"]
+        },
+        "age": {
+          "type": "number"
+        }
+      }
+    },
+    "comments": {
+      "type": "string"
+    },
+    "location": {
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "maxItems": 2,
+      "minItems": 2
+    }
+  }
+}
