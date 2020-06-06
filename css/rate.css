@@ -1,0 +1,63 @@
+/* Add a purple background color to the top navigation */
+.topnav {
+    background-color: #462C61;
+    overflow: hidden;
+    margin: 0;
+    height: 100px;
+  }
+
+  .topnav ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  .topnav ul li {
+    display: inline-block;
+    list-style-type: none;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav ul li a {
+    color: #dab072;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: block;
+    align-self: end;
+    height: 80px;
+  }
+
+  .topnav ul li:first-child {
+    margin-right: auto;
+  }
+
+  .topnav ul li a img {
+    max-height: 80px;
+  }
+
+  
+  /* Change the color of links on hover */
+  .topnav ul li a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav ul li a.active {
+    background-color: #7945AD;
+    color: white;
+  }
+
+.content {
+    margin: auto;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    background-color: rgba(255,255,255,0.5);
+}
+
+body {
+    margin: 0;
+}
