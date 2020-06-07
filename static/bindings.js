@@ -6,7 +6,7 @@ async function sendRequest(method, path, body= null) {
     let options = { method: method }
 
     // Add options for POST/PUT requests
-    if ((method === "POST" || method === "PUT") && body !== null) options.headers["Content-Type"] = "application/json";
+    if ((method === "POST" || method === "PUT") && body !== null) options.headers = {"Content-Type": "application/json"};
     if (body !== null) options.body = JSON.stringify(body);
 
     // Send & parse requests
@@ -87,6 +87,17 @@ class Ratings {
      */
     static async list(department) {
         return await sendRequest("GET", `/api/ratings?department=${department}`);
+    }
+
+    /**
+     * Retrieve all ratings around a given point
+     *
+     * @param {number} latitude - latitude of the center point
+     * @param {number} longitude - longitude of the center point
+     * @returns {Promise<{code: number, success: boolean, reason?: string, data?: Object}>} - the response from the API
+     */
+    static async list_by_area(latitude, longitude) {
+        return await sendRequest("GET", `/api/ratings/area?longitude=${longitude}&latitude=${latitude}`);
     }
 }
 
