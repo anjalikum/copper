@@ -41,12 +41,10 @@
       "type": "object",
       "properties": {
         "race": {
-          "type": "string",
-          "enum": ["white", "african american", "american indian", "asian", "pacific islander", "other"]
+          "type": "string"
         },
         "gender": {
-          "type": "string",
-          "enum": ["male", "female", "non-binary"]
+          "type": "string"
         },
         "age": {
           "type": "number"

@@ -1,10 +1,13 @@
 from flask import Flask, jsonify, request
-from google.cloud import datastore
+from google.cloud import datastore, storage
 from google.cloud.datastore.helpers import GeoPoint
+from uuid import uuid4
 
 from schemas import JsonSchemaException, POST_VALIDATOR
 
 datastore_client = datastore.Client()
+storage_client = storage.Client()
+bucket = storage_client.bucket("rate-your-cop.appspot.com")
 
 app = Flask(__name__)
 
@@ -46,10 +49,44 @@ def rate():
         "nonviolence": request.json['ratings']['nonviolence'],
         "race": request.json['tags']['race'],
         "gender": request.json['tags']['gender'],
-        "age": request.json['tags']['age']
+        "age": request.json['tags']['age'],
+        "image": ""
     })
 
     # Insert into datastore
+    datastore_client.put(entity)
+
+    return jsonify({"status": "success", "data": {"id": entity.id}})
+
+
+@app.route("/api/ratings/<int:key>", methods=["POST"])
+def upload_photo(key):
+    # Ensure image exists in request
+    if "image" not in request.files:
+        return jsonify({"status": "error", "reason": "expected file 'image'"}), 400
+    elif request.files["image"].filename == "":
+        return jsonify({"status": "error", "reason": "no image selected"}), 400
+
+    # Ensure key exists
+    key = datastore_client.key("Post", key)
+    entity = datastore_client.get(key)
+    if entity is None:
+        return jsonify({"status": "error", "reason": "post does not exist"}), 404
+
+    # Change filename to prevent directory traversal
+    image = request.files["image"]
+    image.filename = str(uuid4())
+
+    # Ensure image content type
+    if image.mimetype != "image/png" and image.mimetype != "image/jpeg":
+        return jsonify({"status": "error", "reason": "file must be a png or jpeg image"}), 400
+
+    # Upload to bucket
+    blob = storage.Blob(image.filename, bucket)
+    blob.upload_from_file(image, True, content_type=image.mimetype, predefined_acl="publicRead")
+
+    # Update entity data
+    entity.update({"image": blob.public_url})
     datastore_client.put(entity)
 
     return jsonify({"status": "success"})

@@ -1,4 +1,4 @@
-const url = "https://rate-your-cop.uc.r.appspot.com/";
+const url = "https://rate-your-cop.uc.r.appspot.com";
 
 // Helper function
 async function sendRequest(method, path, body= null) {
@@ -50,6 +50,33 @@ class Ratings {
             comments: comments,
             location: location
         });
+    }
+
+    /**
+     * Upload the badge image
+     *
+     * @param {number} id - post to associate the file with
+     * @param {File} file - image to upload
+     * @returns {Promise<{code: number, success: boolean, reason?: string, data?: Object}>}
+     */
+    static async upload_photo(id, file) {
+        // Set file into data
+        let data = new FormData();
+        data.append("image", file);
+
+        // Send & parse requests
+        let response = await fetch(`${url}/api/ratings/${id}`, {
+            method: "POST",
+            body: data
+        });
+        let json = await response.json();
+
+        // Generate return data
+        let base = { code: response.status, success: response.ok };
+        if (response.ok) base.data = json.data;
+        else base.reason = json.reason;
+
+        return base;
     }
 
     /**
