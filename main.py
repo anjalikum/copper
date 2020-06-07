@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from google.cloud import datastore, storage
-from google.cloud.datastore.helpers import GeoPoint
 from uuid import uuid4
 
 from schemas import JsonSchemaException, POST_VALIDATOR
@@ -10,6 +10,7 @@ storage_client = storage.Client()
 bucket = storage_client.bucket("rate-your-cop.appspot.com")
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/api/ratings", methods=["GET", "POST"])
