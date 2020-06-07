@@ -109,5 +109,24 @@ def departments_for_state(state):
     return jsonify({"status": "success", "data": entities})
 
 
+@app.route("/api/ratings/area/")
+def lat_long_query():
+  #checks for latitude and longitude, returns error if not recieved.
+if request.args.get("latitude") is None:
+      return jsonify({"status": "error", "reason": "query parameter 'latitude' is required"}), 400
+      elif request.args.get("latitude") is None:
+        return jsonify({"status": "error", "reason": "query parameter 'latitude' is required"}), 400
+
+    # Construct query for all departments with matching long + lat abbreviation
+    query = datastore_client.query(kind="Post")
+    query.add_filter("latitude", "=", latitude)
+    query = datastore_client.query(kind="Post")
+    query.add_filter("longitude", "=", longitude)
+
+    # Retrieve the area from the long + lat.
+    entities = [entity for entity in query.fetch()]
+    return jsonify({"status": "success", "data": entities})
+
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080)
