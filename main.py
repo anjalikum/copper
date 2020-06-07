@@ -141,5 +141,22 @@ def lat_long_query():
     return jsonify({"status": "success", "data": entities})
 
 
+@app.route("/api/ratings/since")
+def ratings_since_time():
+    if request.args.get("time") is None:
+        return jsonify({"query parameter 'time' is required"}), 400
+
+    try:
+        t = float(request.args.get("time"))
+    except ValueError:
+        return jsonify({"status": "error", "reason": "query parameter 'time' must be a float"}), 400
+
+    query = datastore_client.query(kind="Post")
+    query.add_filter("date", ">=", t)
+
+    entities = [entity for entity in query.fetch()]
+    return jsonify({"status": "success", "data": entities})
+
+
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080)
