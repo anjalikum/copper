@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from google.cloud import datastore, storage
+import time
 from uuid import uuid4
 
 from schemas import JsonSchemaException, POST_VALIDATOR
@@ -39,6 +40,7 @@ def rate():
     key = datastore_client.key("Post")
     entity = datastore.Entity(key)
     entity.update({
+        "date": time.time(),
         "department": request.json['department'],
         "badge": request.json['badge'],
         "comments": request.json['comments'],
