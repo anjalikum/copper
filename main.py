@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from google.cloud import datastore, storage
 import time
@@ -156,6 +156,12 @@ def ratings_since_time():
 
     entities = [entity for entity in query.fetch()]
     return jsonify({"status": "success", "data": entities})
+
+
+@app.route("/", defaults={"path": "index.html"})
+@app.route("/<path:path>")
+def render(path):
+    return render_template(path)
 
 
 if __name__ == "__main__":
