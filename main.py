@@ -25,8 +25,7 @@ def rate():
         query.add_filter("department", "=", request.args.get("department"))
 
         # Retrieve all posts
-        entities = [{**entity, "location": [entity["location"].latitude, entity["location"].longitude]} for entity in
-                    query.fetch()]
+        entities = [entity for entity in query.fetch()]
         return jsonify({"status": "success", "data": entities})
 
     # Validate request body by schema in `./schemas/post.json`
@@ -42,7 +41,8 @@ def rate():
         "department": request.json['department'],
         "badge": request.json['badge'],
         "comments": request.json['comments'],
-        "location": GeoPoint(latitude=request.json['location'][0], longitude=request.json['location'][1]),
+        "latitude": request.json["location"][0],
+        "longitude": request.json['location'][1],
         "friendliness": request.json['ratings']['friendliness'],
         "difficulty": request.json['ratings']['difficulty'],
         "appropriateness": request.json['ratings']['appropriateness'],
@@ -109,22 +109,32 @@ def departments_for_state(state):
     return jsonify({"status": "success", "data": entities})
 
 
-@app.route("/api/ratings/area/")
+@app.route("/api/ratings/area")
 def lat_long_query():
-  #checks for latitude and longitude, returns error if not recieved.
-if request.args.get("latitude") is None:
-      return jsonify({"status": "error", "reason": "query parameter 'latitude' is required"}), 400
-      elif request.args.get("latitude") is None:
+    # Checks for latitude and longitude, returns error if not received.
+    if request.args.get("latitude") is None:
         return jsonify({"status": "error", "reason": "query parameter 'latitude' is required"}), 400
+    elif request.args.get("latitude") is None:
+        return jsonify({"status": "error", "reason": "query parameter 'latitude' is required"}), 400
+
+    # Ensure correct datatypes
+    try:
+        latitude = float(request.args.get("latitude"))
+        longitude = float(request.args.get("longitude"))
+    except ValueError:
+        return jsonify({"status": "error", "reason": "query parameters 'latitude' and 'longitude' must be floats"}), 400
 
     # Construct query for all departments with matching long + lat abbreviation
     query = datastore_client.query(kind="Post")
-    query.add_filter("latitude", "=", latitude)
-    query = datastore_client.query(kind="Post")
-    query.add_filter("longitude", "=", longitude)
+    query.add_filter("latitude", ">=", latitude - 1.0)
+    query.add_filter("latitude", "<=", latitude + 1.0)
 
     # Retrieve the area from the long + lat.
     entities = [entity for entity in query.fetch()]
+
+    # Filter resulting by longitude
+    entities = list(filter(lambda entity: longitude - 1.0 <= entity["longitude"] <= longitude + 1.0, entities))
+
     return jsonify({"status": "success", "data": entities})
 
 
