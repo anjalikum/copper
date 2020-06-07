@@ -39,7 +39,7 @@
           <input type="text" id="bnumber" name="bnumber" placeholder="Badge Number"><br>
       
           <label for="City">City</label><br>
-          <input type="text" id="city" name="city" placeholder="Location Of Incident"><br><br><br>
+          <input type="text" id="city" name="city" placeholder="Location of Incident"><br><br><br>
       
           <label for="rating">Friendliness</label>
           <div id="stars_1" class="starrr"></div> <br>
@@ -53,10 +53,10 @@
           <div id="stars_5" class="starrr"></div> <br> <br> <br>
       
           <label for="description">Description</label><br>
-          <textarea id="description" name="description" placeholder="Description Of Incident.." style="height:200px"></textarea><br><br><br>
+          <textarea id="description" name="description" placeholder="Description of Incident" style="height:200px"></textarea><br><br><br>
 
           <label for="locat">Please enter the nearest landmark to the incident or the name of the street (please include full address if possible):</label><br>
-          <input type="text" id="locat" name="locat" placeholder="Starbucks">
+          <input type="text" id="locat" name="locat" placeholder="Starbucks, Ada, MI">
           <div id="cbutton" class="cbutton">
             Get Coordinates
           </div>
@@ -65,10 +65,9 @@
           </div>
           <br><br><br>
       
-          <form action="upload.php" method="post" enctype="multipart/form-data">
-              If possible, upload an image of the officer's badge: <br><br>
-              <input type="file" name="fileToUpload" id="fileToUpload">
-              <input type="submit" value="Upload Image" name="submit">
+          If possible, upload an image of the officer's badge: <br><br>
+          <input type="file" name="fileToUpload" id="fileToUpload">
+          
           <br><br><br>
           <input type="submit" value="Submit">
         </form>
