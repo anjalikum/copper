@@ -93,6 +93,19 @@ input[type=submit]:hover {
   background-color: #614A27;
 }
 
+.submit {
+  background-color: #AD8A56;
+  color: rgba(255,255,255,0.5);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submit:hover {
+  background-color: #614A27;
+}
+
 .cbutton {
   background-color: #AD8A56;
   color: rgba(255,255,255,0.5);

@@ -33,12 +33,12 @@
     </div> 
 
     <div class="content">
-  
-        <form action="/action_page.php">
+      <div id="form">
+        <form>
           <label for="bnumber">Badge Number</label><br>
           <input type="text" id="bnumber" name="bnumber" placeholder="Badge Number"><br>
       
-          <label for="City">City</label><br>
+          <label for="City">Department</label><br>
           <input type="text" id="city" name="city" placeholder="Location of Incident"><br><br><br>
       
           <label for="rating">Friendliness</label>
@@ -67,12 +67,15 @@
           <br><br><br>
       
           If possible, upload an image of the officer's badge: <br><br>
-          <input type="file" name="fileToUpload" id="fileToUpload">
+          <input type="file" name="fileToUpload" id="file">
           
           <br><br><br>
-          <input type="submit" value="Submit">
+          <div class="submit" id="submit">Submit</div>
         </form>
-     
+      </div>        
+      <div id="ty">
+        Thank you for your submission!
+      </div>
     </div>
 
     <script async defer
