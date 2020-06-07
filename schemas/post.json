@@ -38,6 +38,7 @@
       }
     },
     "tags": {
+      "required": [],
       "type": "object",
       "properties": {
         "race": {
