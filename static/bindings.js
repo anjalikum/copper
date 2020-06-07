@@ -42,7 +42,7 @@ class Ratings {
      * @returns {Promise<{code: number, success: boolean, reason?: string, data?: Object}>} - the response of the API
      */
     static async create(badge, department, ratings, tags, comments, location) {
-        return await sendRequest("POST", "/api/rate", {
+        return await sendRequest("POST", "/api/ratings", {
             badge: badge,
             department: department,
             ratings: ratings,
@@ -52,8 +52,14 @@ class Ratings {
         });
     }
 
+    /**
+     * Retrieve all ratings for a given police department
+     *
+     * @param {string} department - police department to get ratings for
+     * @returns {Promise<{code: number, success: boolean, reason?: string, data?: Object}>} - the response from the API
+     */
     static async list(department) {
-        throw new Error("not yet implemented");
+        return await sendRequest("GET", `/api/ratings?department=${department}`);
     }
 }
 
