@@ -62,6 +62,7 @@
           </div>
           <div id="dlocat">
             The full location you've entered would be <span id="formatted"></span>. The latitude is <span id="lat"></span> and the longitude is <span id="long"></span>.
+            <div id="map"></div>
           </div>
           <br><br><br>
       
@@ -73,10 +74,11 @@
         </form>
      
     </div>
-</body>
 
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeYhmuppJHXysIGKMLyleeCNfjxm4aNmU&callback=initMap">
+    </script>
 
-</html>
 </body>
 
 
