@@ -9,8 +9,18 @@ datastore_client = datastore.Client()
 app = Flask(__name__)
 
 
-@app.route("/api/rate", methods=["POST"])
+@app.route("/api/ratings", methods=["GET", "POST"])
 def rate():
+    if request.method == "GET":
+        if request.args.get("department") is None:
+            return jsonify({"status": "error", "reason": "query parameter 'department' is required"}), 400
+
+        query = datastore_client.query(kind="Post")
+        query.add_filter("department", "=", request.args.get("department"))
+
+        entities = [entity for entity in query.fetch()]
+        return jsonify({"status": "success", "data": entities})
+
     try:
         POST_VALIDATOR(request.json)
     except JsonSchemaException as e:
