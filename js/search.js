@@ -1,16 +1,9 @@
-// $(document).ready(() => {
-//     var profile = $('#profile');
-//     profile.toggleClass('hide');
-// });
+$( document ).ready(function() {
+  $("#profile").hide();
 
-// var button = $('.searchSubmit');
-// var profileDiv = $('#profile'); 
-
-// button.on('click', showProfileDiv);
-
-// function showProfileDiv() {
-//   profileDiv.toggleClass('show');
-// }
-$(".SearchSubmit").click(function() {
+  $("#submit").click(function() {
     $("#profile").show();
+    $("#form").hide();
   });
+});
+
