@@ -25,7 +25,8 @@ def rate():
         query.add_filter("department", "=", request.args.get("department"))
 
         # Retrieve all posts
-        entities = [entity for entity in query.fetch()]
+        entities = [{**entity, "location": [entity["location"].latitude, entity["location"].longitude]} for entity in
+                    query.fetch()]
         return jsonify({"status": "success", "data": entities})
 
     # Validate request body by schema in `./schemas/post.json`
